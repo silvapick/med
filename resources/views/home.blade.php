@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
+        <div class="text-center">
+          <img src="{{ asset('assets/lte/img/logo.png') }}" style="width:45%">
+        </div>
+<!--
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -20,4 +25,5 @@
         </div>
     </div>
 </div>
+-->
 @endsection

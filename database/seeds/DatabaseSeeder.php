@@ -32,5 +32,18 @@ class DatabaseSeeder extends Seeder
             'estado'  => '1',
             'remember_token' => Str::random(10)
         ]);
+
+        DB::table('tipo_medicamentos')->insert([
+            'nombre'  => 'Medicamentos POS',
+            'estado'  => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('tipo_medicamentos')->insert([
+            'nombre'  => 'Medicamentos NO POS',
+            'estado'  => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
 }
