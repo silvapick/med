@@ -103,7 +103,7 @@
   <ul class="sidebar-menu" data-widget="tree">
     <li class="header">MENU</li>
     <!-- Optionally, you can add icons to the links -->
-    <li class="active"><a href="home"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
+    <li class=""><a href="home"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
     <li class="treeview">
       <a href="#"><i class="fa fa-medkit"></i> <span>Farmacia</span>
         <span class="pull-right-container">
@@ -111,7 +111,7 @@
           </span>
       </a>
       <ul class="treeview-menu">
-        <li><a href="medicamentos"><i class="fa fa-circle-o"></i>Medicamentos</a></li>
+        <li class="" ><a href="medicamentos"><i class="fa fa-circle-o"></i>Medicamentos</a></li>
       </ul>
     </li>
   </ul>

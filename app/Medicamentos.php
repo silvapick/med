@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Medicamentos extends Model
@@ -17,7 +18,7 @@ class Medicamentos extends Model
         'codigo', 'nombre', 'descripcion', 'valor', 'stop', 'stop_min', 'stop_max', 
     ];
 
-    public function tipomedicamento()
+    public function tipo_id()
     {
         return $this->hasOne('App\TipoMedicamentos');
     }

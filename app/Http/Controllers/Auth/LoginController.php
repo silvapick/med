@@ -47,7 +47,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-         Validator::make($request->all(), [
+        Validator::make($request->all(), [
             $this->username() => 'required|numeric',
             'password' => 'required|string',
         ])->validate();
