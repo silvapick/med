@@ -15,7 +15,7 @@
           <h3 class="box-title">MEDICAMENTOS</h3>
 
           <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool cl_colap" data-widget="collapse"><i class="fa fa-minus"></i></button>
           </div>
         </div>
         <!-- /.box-header -->
@@ -33,7 +33,9 @@
                 {{ Session::get('alert') }}
             </div>
             @endif
-            <form method="POST" action="{{ route('medicamentos.store') }}">
+            <div class="cl_ajax">
+            </div>
+            <form method="POST" action="{{ route('medicamentos.store') }}" id="MedicForm">
                 @csrf
             <div class="row">
             <!-- /.col -->            
@@ -128,10 +130,12 @@
 
             <!--.-->
             <div class="col-md-12 text-right">
-                <button class="btn btn-warning" type="reset">
+                <button class="btn btn-warning" type="reset" id="editMedic">
                     <i class=" fa fa-undo"></i> {{ __('Limpiar') }}</button>
-                <button class="btn btn-success" type="submit">
+                <button class="btn btn-success" type="submit" id="registrar">
                     <i class=" fa fa-plus"></i> {{ __('Registrar') }}</button>
+                <button class="btn btn-success" type="submit" id="modificar">
+                    <i class=" fa fa-edit"></i> {{ __('Modificar') }}</button>
             </div>
             
             <!-- /.col -->

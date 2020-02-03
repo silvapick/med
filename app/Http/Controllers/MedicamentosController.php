@@ -34,9 +34,9 @@ class MedicamentosController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
    
-                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
+                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editMedic">Edit</a>';
    
-                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
+                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteMedic">Delete</a>';
     
                             return $btn;
                     })
@@ -116,6 +116,8 @@ class MedicamentosController extends Controller
     public function edit($id)
     {
         //
+        $medicamentos = Medicamentos::find($id);
+        return response()->json($medicamentos);
     }
 
     /**
@@ -127,7 +129,32 @@ class MedicamentosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'codigo' => 'required|string|max:20',
+            'nombre' => 'required|string|max:100',
+            'descripcion' => 'required|string',
+            'valor' => 'required|numeric|digits_between:1,10',
+            'stop' => 'required|numeric|max:9999',
+            'stop_min' => 'required|numeric|max:9999',
+            'stop_max' => 'required|numeric|max:9999',
+        ]);
+        if ($validator->passes()) {
+
+            $medi = Medicamentos::find($id);
+            $medi->nombre = $request->nombre;
+            $medi->descripcion = $request->descripcion;
+            $medi->tipo_id = $request->tipo;
+            $medi->valor = $request->valor;
+            $medi->stop = $request->stop;
+            $medi->stop_min = $request->stop_min;
+            $medi->stop_max = $request->stop_max;
+            $medi->save();
+
+            return response()->json(['success'=>'Medicamento Modificado exitosamente.']);
+            
+        }
+
+        return response()->json(['success' => null, 'error'=>$validator->errors()->all()]);
     }
 
     /**

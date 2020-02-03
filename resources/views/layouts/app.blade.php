@@ -167,56 +167,7 @@
 
 <!-- AdminLTE App -->
 <script src="{{ asset('assets/lte/js/adminlte.min.js') }}"></script>
-<script type="text/javascript">
-  $(function () {
-     
-      $.ajaxSetup({
-          headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-      });
-    var table = $('#medicamentos').DataTable({
-        
-      paging      : true,
-      lengthChange: false,
-      searching   : false,
-      ordering    : false,
-      info        : true,
-        ajax: "{{ route('medicamentos.index') }}",
-        columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'codigo', name: 'codigo'},
-            {data: 'nombre', name: 'nombre'},
-            {data: 'tipomedi', name: 'tipomedi'},
-            {data: 'valor', name: 'valor'},
-            {data: 'stop', name: 'stop'},
-            {data: 'stop_min', name: 'stop_min'},
-            {data: 'stop_max', name: 'stop_max'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
-        ]
-    });
-
-
-    $('body').on('click', '.deleteProduct', function () {
-     
-        var product_id = $(this).data("id");
-        confirm("¿Esta segurodo de eliminar el Medicamento?");
-      
-        $.ajax({
-            type: "DELETE",
-            url: "{{ route('medicamentos.store') }}"+'/'+product_id,
-            success: function (data) {
-              alert(data.success);  
-              table.ajax.reload();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });
-    });
-    $("#medicamentos").css("width","100%");
-  });
-  </script>
+<script src="{{ asset('assets/lte/js/pages/medicamentos.js') }}" defer></script>
 
 </body>
 </html>
