@@ -1,9 +1,9 @@
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 ## Informacion
--> Oscar Daniel Espitia
--> 310 2380 722
--> odespitia@gmail.com  
+- **[Vehikl] Oscar Daniel Espitia**
+- **[Vehikl] odespitia@gmail.com**
+- **[Vehikl] 310 2380 722**
 
 ## Acerca del proyetco
 <p>
