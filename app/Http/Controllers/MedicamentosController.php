@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TipoMedicamentos;
-use Illuminate\Support\Facades\Validator;
 use App\Medicamentos;
+use Illuminate\Support\Facades\Validator;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
+use DataTables;
 
 class MedicamentosController extends Controller
 {
@@ -25,8 +26,28 @@ class MedicamentosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $data = Medicamentos::latest()->get();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+   
+                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
+   
+                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
+    
+                            return $btn;
+                    })
+                    ->addColumn('tipomedi', function($row){
+                        $TipoMedi = TipoMedicamentos::find($row->tipo_id);
+                        return $TipoMedi->nombre;
+                    })
+                    ->rawColumns(['action','tipomedi'])
+                    ->make(true);
+        }
+        
         $TipoMedi = TipoMedicamentos::all();
         $medicamentos = Medicamentos::all();
         return view('farmacia.medicamentos', compact('TipoMedi', 'medicamentos'));
@@ -60,19 +81,19 @@ class MedicamentosController extends Controller
             'stop_max' => 'required|numeric|max:9999',
         ])->validate();
         
-        $medi = new Medicamentos();
-        $medi->codigo = $request->codigo;
-        $medi->nombre = $request->nombre;
-        $medi->descripcion = $request->descripcion;
-        $medi->tipo_id = $request->tipo;
-        $medi->valor = $request->valor;
-        $medi->stop = $request->stop;
-        $medi->stop_min = $request->stop_min;
-        $medi->stop_max = $request->stop_max;
-        $medi->user_id = Auth::id();
-        $medi->save();
-        //Redirigir a la lista de tareas.
-        return Redirect::to('medicamentos')->with('notice', 'Medicamento guardada correctamente.');
+            $medi = new Medicamentos();
+            $medi->codigo = $request->codigo;
+            $medi->nombre = $request->nombre;
+            $medi->descripcion = $request->descripcion;
+            $medi->tipo_id = $request->tipo;
+            $medi->valor = $request->valor;
+            $medi->stop = $request->stop;
+            $medi->stop_min = $request->stop_min;
+            $medi->stop_max = $request->stop_max;
+            $medi->user_id = Auth::id();
+            $medi->save();
+            //Redirigir a la lista de tareas.
+            return Redirect::to('medicamentos')->with('notice', 'Medicamento guardada correctamente.');
     }
 
     /**
@@ -118,5 +139,8 @@ class MedicamentosController extends Controller
     public function destroy($id)
     {
         //
+        Medicamentos::find($id)->delete();
+     
+        return response()->json(['success'=>'Medicamento eliminado satisfatoriamente.']);
     }
 }

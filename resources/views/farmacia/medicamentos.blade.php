@@ -27,6 +27,12 @@
                 {{ Session::get('notice') }}
             </div>
             @endif
+            @if(Session::has('alert'))
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                {{ Session::get('alert') }}
+            </div>
+            @endif
             <form method="POST" action="{{ route('medicamentos.store') }}">
                 @csrf
             <div class="row">
@@ -135,7 +141,27 @@
         </div>
         </div>
     </div>
-    <!--/.col (right) -->
+    <!--/.col -->
+    <div class="col-md-12">
+    <table class="table table-bordered data-table" id="medicamentos" style="background-color: #FFF;">
+        <thead>
+            <tr>
+                <th col="1">No</th>
+                <th>Codigo</th>
+                <th col="2">Nombre</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Cantidad</th>
+                <th>Stop Minimo</th>
+                <th>Stop Maximo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    </div>
+
 </div>
 
 @endsection

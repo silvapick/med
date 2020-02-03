@@ -17,13 +17,14 @@
     <link rel="stylesheet" href="{{ asset('assets/lte/bootstrap/dist/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('assets/lte/font-awesome/css/font-awesome.min.css') }}">
+    <!-- DataTables -->
+    <link href="{{ asset('assets/lte/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('assets/lte/css/AdminLTE.min.css') }}">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
             page. However, you can choose any other skin. Make sure you
             apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="{{ asset('assets/lte/css/skins/skin-blue.min.css') }}">
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -160,8 +161,62 @@
 <script src="{{ asset('assets/lte/jquery/dist/jquery.min.js') }}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('assets/lte/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<!-- DataTables -->
+<script src="{{ asset('assets/lte/plugins/datatables.net/js/jquery.dataTables.min.js') }}" defer></script>
+<script src="{{ asset('assets/lte/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js') }}" defer></script>
+
 <!-- AdminLTE App -->
 <script src="{{ asset('assets/lte/js/adminlte.min.js') }}"></script>
+<script type="text/javascript">
+  $(function () {
+     
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+    var table = $('#medicamentos').DataTable({
+        
+      paging      : true,
+      lengthChange: false,
+      searching   : false,
+      ordering    : false,
+      info        : true,
+        ajax: "{{ route('medicamentos.index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'codigo', name: 'codigo'},
+            {data: 'nombre', name: 'nombre'},
+            {data: 'tipomedi', name: 'tipomedi'},
+            {data: 'valor', name: 'valor'},
+            {data: 'stop', name: 'stop'},
+            {data: 'stop_min', name: 'stop_min'},
+            {data: 'stop_max', name: 'stop_max'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ]
+    });
+
+
+    $('body').on('click', '.deleteProduct', function () {
+     
+        var product_id = $(this).data("id");
+        confirm("¿Esta segurodo de eliminar el Medicamento?");
+      
+        $.ajax({
+            type: "DELETE",
+            url: "{{ route('medicamentos.store') }}"+'/'+product_id,
+            success: function (data) {
+              alert(data.success);  
+              table.ajax.reload();
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    });
+    $("#medicamentos").css("width","100%");
+  });
+  </script>
 
 </body>
 </html>
