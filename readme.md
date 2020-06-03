@@ -14,7 +14,7 @@
 - Bootstrap
 </p>
 
-## IMPLEMENTACIN
+## IMPLEMENTACIÓN
 - crear base de datos "medicamentos" y configurar en el .env
 - php artisan migrate
 - php artisan db:seed
