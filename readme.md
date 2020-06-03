@@ -20,7 +20,7 @@
 - php artisan db:seed
 
 ## ACCESO
-- User (cedula): 123456789
-- Pass         : 123456789
+- Usuario:    123456789
+- Contraseña: 123456789
 
 <p align="center"><img src="https://styde.net/wp-content/uploads/2019/02/laravel-5-8.jpg"></p>
