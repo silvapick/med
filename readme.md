@@ -3,7 +3,7 @@
 - Análisis y desarrollo de sistemas de información
 - Implementación y soporte
 - flsilvab@gmail.com
-- + 57 316 530 7459
+- (+) 57 316 530 7459
 
 ## PROYECTO
 <p>
