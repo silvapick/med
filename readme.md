@@ -1,26 +1,26 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## Datos de Contacto
+- Fabian Leonardo Silva Bonilla
+- Análisis y desarrollo de sistemas de información
+- Implementación y soporte
+- flsilvab@gmail.com
+- + 57 316 530 7459
 
-## Informacion
-- Oscar Daniel Espitia
-- odespitia@gmail.com
-- 310 2380 722
-
-## Acerca del proyetco
+## PROYECTO
 <p>
 - Proyecto en laravel 5.8
-- Con motor de base de datos MySql
-- Uso de Jquery
-- Uso de Bootstrap para el CSS
-- Se utilizo datatable para mostrar los medicamentos
+- PHP7
+- MySQL
+- JQuery, DataTables
+- Bootstrap
 </p>
 
-
-## Correr los siguientes Scripts para las migraciones y crear usuarios de prueba y los registros base de tipos de medicamentos
-- crear base de datos (medicamentos) y configurar en el .env
+## IMPLEMENTACIN
+- crear base de datos "medicamentos" y configurar en el .env
 - php artisan migrate
 - php artisan db:seed
 
-## Usuarios de Prueba
-- User (cedula): 123456
-- Pass         : 123456
+## ACCESO
+- User (cedula): 123456789
+- Pass         : 123456789
 
+<p align="center"><img src="https://styde.net/wp-content/uploads/2019/02/laravel-5-8.jpg"></p>
